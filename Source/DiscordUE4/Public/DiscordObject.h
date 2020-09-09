@@ -82,6 +82,9 @@ public:
 
 	UPROPERTY(BlueprintAssignable, Category = "Discord|Delegates")
 	FOnDiscordResult OnLargeImageSet;
+	
+	UPROPERTY(BlueprintAssignable, Category = "Discord|Delegates")
+	FOnDiscordResult OnSmallImageSet;
 
 	UPROPERTY(BlueprintAssignable, Category = "Discord|Delegates")
 	FOnDiscordResult OnTimerStart;
@@ -137,6 +140,9 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "Discord")
 	void SetLargeImage(const FString InKeyName);
+	
+	UFUNCTION(BlueprintCallable, Category = "Discord")
+	void SetSmallImage(const FString InKeyName);
 
 	/**
 	* public UDiscordObject::StartDiscordTimer
