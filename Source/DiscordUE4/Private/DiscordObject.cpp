@@ -30,14 +30,25 @@ UDiscordObject* UDiscordObject::GetOrCreateDiscordObject(FString InClientID, con
 		DiscordObjectInstance->Internal_CreateDiscordObject(InClientID, bRequireDiscordRunning, bStartElapsedTimer);
 	}
 	
+	//return DiscordObjectInstance;
+}
+
+UDiscordObject* UDiscordObject::GetDiscordObject()
+{
 	return DiscordObjectInstance;
 }
+
 
 void UDiscordObject::DestroyDiscordObject()
 {
 	if (DiscordObjectInstance)
 	{
+		DiscordObjectInstance->SetState("");
+		DiscordObjectInstance->SetDetails("");
 		DiscordObjectInstance->StopDiscordTimer();
+		DiscordObjectInstance->bCanTick = false;
+		delete core;
+		core = nullptr;
 		DiscordObjectInstance->RemoveFromRoot();
 		DiscordObjectInstance->ConditionalBeginDestroy();
 		DiscordObjectInstance = nullptr;
